@@ -13,8 +13,7 @@ public class RadioTest {
     @CsvSource({
             "8,8",
             "-1,0",   //значения меньше минимального
-            "11,0"    //значение больше максимального
-
+            "101,0"    //значение больше максимального
     })
 
     public void shouldSetVolume(int volume , int expected) {
@@ -30,8 +29,8 @@ public class RadioTest {
     @ParameterizedTest
     @CsvSource({
             "0,1",
-            "9,10",
-            "10,10"    //увеличение звука при текущем максимальном
+            "99,100",
+            "100,100"    //увеличение звука при текущем максимальном
     })
     public void shouldSetToIncreasePer1(int volume , int expected) {
         Radio radio = new Radio();
@@ -46,7 +45,7 @@ public class RadioTest {
 
     @ParameterizedTest
     @CsvSource({
-            "10,9",
+            "100,99",
             "1,0",
             "0,0"    //уменьшение звука при текущем минимальном
     })
@@ -116,5 +115,37 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
 
     }
+
+    // Тесты для проверки конструктора
+    @Test
+    public void shouldSetNumberOfStations() {
+        Radio station = new Radio(15);
+        Assertions.assertEquals(15, station.getNumberOfStations());
+    }
+
+    @Test
+    public void shouldSet10IfDoNotWantSetNumberOfStations() {
+        Radio station = new Radio();
+        Assertions.assertEquals(10, station.getNumberOfStations());
+    }
+
+    @Test
+    public void shouldSetNextStationWithConstructor() {
+        Radio station = new Radio(20);
+        station.setCurrentStation(16);
+
+        station.next();
+        Assertions.assertEquals(17, station.getCurrentStation());
+    }
+
+    @Test
+    public void shouldSetPrevStationWithConstructor() {
+        Radio station = new Radio(20);
+        station.setCurrentStation(16);
+
+        station.prev();
+        Assertions.assertEquals(15, station.getCurrentStation());
+    }
+
 
 }
