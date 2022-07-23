@@ -117,36 +117,4 @@ public class RadioTest {
 
     }
 
-    // Тесты для проверки конструктора
-    @Test
-    public void shouldSetNumberOfStations() {
-        Radio station = new Radio(15);
-        Assertions.assertEquals(15, station.getNumberOfStations());
-    }
-
-    @Test
-    public void shouldSet10IfDoNotWantSetNumberOfStations() {
-        Radio station = new Radio();
-        Assertions.assertEquals(10, station.getNumberOfStations());
-    }
-
-    @Test
-    public void shouldSetNextStationWithConstructor() {
-        Radio station = new Radio(20);
-        station.setCurrentStation(16);
-
-        station.next();
-        Assertions.assertEquals(17, station.getCurrentStation());
-    }
-
-    @Test
-    public void shouldSetPrevStationWithConstructor() {
-        Radio station = new Radio(20);
-        station.setCurrentStation(16);
-
-        station.prev();
-        Assertions.assertEquals(15, station.getCurrentStation());
-    }
-
-
 }
